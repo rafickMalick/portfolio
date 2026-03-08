@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "projects": "Projects",
+        "roadmap": "My Journey",
+        "skills": "Skills",
+        "contact": "Contact"
+    },
+    "theme": {
+        "it": "IT & Software",
+        "robotics": "Robotics"
+    }
+}

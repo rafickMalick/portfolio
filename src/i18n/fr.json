@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "projects": "Projets",
+        "roadmap": "Mon Parcours",
+        "skills": "Compétences",
+        "contact": "Contact"
+    },
+    "theme": {
+        "it": "IT & Logiciel",
+        "robotics": "Robotique"
+    }
+}

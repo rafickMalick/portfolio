@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "projects": "Proyectos",
+        "roadmap": "Mi Trayectoria",
+        "skills": "Habilidades",
+        "contact": "Contacto"
+    },
+    "theme": {
+        "it": "TI y Software",
+        "robotics": "Robótica"
+    }
+}

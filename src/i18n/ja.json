@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "projects": "プロジェクト",
+        "roadmap": "私の軌跡",
+        "skills": "スキル",
+        "contact": "お問い合わせ"
+    },
+    "theme": {
+        "it": "ITとソフトウェア",
+        "robotics": "ロボット工学"
+    }
+}
