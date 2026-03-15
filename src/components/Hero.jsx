@@ -35,13 +35,64 @@ export default function Hero() {
                     </p>
 
                     <div className="hero-actions">
-                        <button className="btn-primary">
+                        <button className="btn-primary" onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}>
                             Explorer mes projets
                             <ArrowRight size={20} />
                         </button>
-                        <button className="btn-secondary">
-                            Télécharger mon CV
-                        </button>
+                        
+                        <div className="relative inline-block">
+                            <button 
+                                className="btn-secondary" 
+                                onClick={() => {
+                                    // Afficher le popup
+                                    const popup = document.getElementById('cv-popup');
+                                    popup.classList.remove('hidden');
+                                    popup.classList.add('flex');
+                                    
+                                    // Télécharger le CV anglais quand même
+                                    const link = document.createElement('a');
+                                    link.href = '/MALICK_CV-EN.pdf';
+                                    link.download = 'MALICK_CV-EN.pdf';
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                    
+                                    // Cacher après 30 secondes
+                                    setTimeout(() => {
+                                        popup.classList.add('hidden');
+                                        popup.classList.remove('flex');
+                                    }, 30000);
+                                }}
+                            >
+                                Télécharger mon CV
+                            </button>
+                            
+                            {/* Popup caché par défaut */}
+                            <div 
+                                id="cv-popup" 
+                                className="hidden absolute top-full mt-4 left-0 w-72 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-2xl z-50 flex-col gap-2"
+                                style={{ transform: 'translateX(-20%)' }}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <h4 className="text-sm font-bold text-white">Version française indisponible</h4>
+                                    <button 
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            const popup = document.getElementById('cv-popup');
+                                            popup.classList.add('hidden');
+                                            popup.classList.remove('flex');
+                                        }}
+                                        className="text-white/50 hover:text-white"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                                <p className="text-xs text-white/80 leading-relaxed">
+                                    Le CV en français n'est pas encore disponible. La version anglaise a été téléchargée. 
+                                    Veuillez me contacter via le formulaire en bas de page pour avoir une version plus adéquate de mon profil en fonction de votre secteur.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
 

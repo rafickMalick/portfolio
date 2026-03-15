@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Send, MapPin, Mail, Linkedin, Github, Phone, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import emailjs from '@emailjs/browser'
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -25,36 +24,31 @@ export default function Contact() {
         setIsLoading(true)
         setStatus({ type: null, message: '' })
 
-        // Configuration EmailJS - Utilise les variables d'environnement ou des valeurs par défaut
-        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID'
-        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID'
-        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
-
-        // Vérifier si les identifiants EmailJS sont configurés
-        if (serviceId === 'YOUR_SERVICE_ID' || templateId === 'YOUR_TEMPLATE_ID' || publicKey === 'YOUR_PUBLIC_KEY') {
-            setStatus({ 
-                type: 'error', 
-                message: 'Configuration EmailJS manquante. Veuillez configurer les identifiants dans le fichier .env ou Contact.jsx. Consultez EMAILJS_SETUP.md pour plus d\'informations.' 
-            })
-            setIsLoading(false)
-            return
-        }
-
-        // Paramètres du template EmailJS
-        const templateParams = {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_email: 'malickrafick456@gmail.com'
-        }
-
         try {
-            await emailjs.send(serviceId, templateId, templateParams, publicKey)
-            setStatus({ 
-                type: 'success', 
-                message: 'Message envoyé avec succès ! Je vous répondrai bientôt.' 
-            })
-            setFormData({ name: '', email: '', message: '' })
+            const response = await fetch("https://formsubmit.co/ajax/malickrafick456@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    Nom: formData.name,
+                    Email: formData.email,
+                    Message: formData.message,
+                    _subject: `Nouveau contact portfolio: ${formData.name}`,
+                    _template: "table"
+                })
+            });
+
+            if (response.ok) {
+                setStatus({ 
+                    type: 'success', 
+                    message: 'Message envoyé avec succès ! Je vous répondrai bientôt.' 
+                })
+                setFormData({ name: '', email: '', message: '' })
+            } else {
+                throw new Error('Erreur réseau lors de l\'envoi du message');
+            }
         } catch (error) {
             console.error('Erreur lors de l\'envoi:', error)
             setStatus({ 
@@ -115,7 +109,7 @@ export default function Contact() {
 
                         <div className="social-links">
                             <a href="#" className="social-icon"><Linkedin size={24} /></a>
-                            <a href="#" className="social-icon"><Github size={24} /></a>
+                            <a href="https://github.com/rafickMalick" target="_blank" rel="noopener noreferrer" className="social-icon"><Github size={24} /></a>
                         </div>
                     </motion.div>
 
