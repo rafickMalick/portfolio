@@ -9,3 +9,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <App />
     </React.StrictMode>,
 )
+
+// Static text fallback for non-JS-executing fetchers (index.html#static-fallback,
+// CSS-hidden once JS runs). Remove it outright so no crawler that reads raw text
+// content while still running scripts sees it duplicated alongside the real app.
+document.getElementById('static-fallback')?.remove()

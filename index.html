@@ -5,6 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rafick Malick — Développeur Fullstack & Robotique</title>
+    <meta name="description" content="Rafick Malick, étudiant ingénieur à Epitech Bénin : développement web fullstack (React, Node.js) et robotique/embarqué (ESP32, C++, vision par ordinateur). 14+ projets menés à terme, dont Sang+ (plateforme de don de sang), une boutique en ligne et un boîtier de sauvegarde énergétique." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rafick Malick — Développeur Fullstack & Robotique" />
+    <meta property="og:description" content="Étudiant ingénieur à Epitech Bénin, je livre la chaîne complète : du firmware embarqué à l'interface web qui le pilote. 14+ projets, du développement web à la robotique." />
+    <meta property="og:url" content="https://rafick.vercel.app/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rafick Malick — Développeur Fullstack & Robotique" />
+    <meta name="twitter:description" content="Étudiant ingénieur à Epitech Bénin, je livre la chaîne complète : du firmware embarqué à l'interface web qui le pilote. 14+ projets, du développement web à la robotique." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Work+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,26 +22,31 @@
           var t = localStorage.getItem('rk-theme-v3');
           if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
         } catch (e) {}
+        // Marks JS as active before the static fallback below ever paints, so real
+        // browsers never see it flash. Non-executing fetchers (crawlers, AI tools
+        // that just GET the HTML) never run this script, so the class is never
+        // added and the fallback content stays visible in the raw markup.
+        document.documentElement.classList.add('js');
       })();
     </script>
+    <style>
+      html.js #static-fallback { display: none; }
+      /* index.css (loaded via a <link>, so active even without JS) defaults body
+         to the dark theme background. Force white behind the fallback only when
+         JS never ran to flip on .js — real visitors keep the normal dark flash-free load. */
+      html:not(.js) body { background: #fff; }
+      #static-fallback { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; font-family: system-ui, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fff; }
+      #static-fallback h1 { font-size: 2rem; margin-bottom: 0.25em; }
+      #static-fallback h2 { margin-top: 2.5em; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
+      #static-fallback h3 { margin-bottom: 0.2em; }
+      #static-fallback ul { padding-left: 1.2em; }
+      #static-fallback .project { margin-bottom: 1.5em; }
+      #static-fallback .meta { color: #666; font-size: 0.9em; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <noscript>
-      <style>
-        /* index.css is loaded via a <link>, which applies even with JS off (its dark
-           theme is JS-driven only for the toggle, not the default). Override both
-           html/body and this wrapper explicitly so the fallback text stays readable. */
-        html, body { background: #fff !important; }
-        .fallback { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; font-family: system-ui, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fff; }
-        .fallback h1 { font-size: 2rem; margin-bottom: 0.25em; }
-        .fallback h2 { margin-top: 2.5em; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
-        .fallback h3 { margin-bottom: 0.2em; }
-        .fallback ul { padding-left: 1.2em; }
-        .fallback .project { margin-bottom: 1.5em; }
-        .fallback .meta { color: #666; font-size: 0.9em; }
-      </style>
-      <div class="fallback">
+    <div id="static-fallback">
         <p>Ouvert aux offres &amp; stages · Bénin / remote</p>
         <h1>Rafick Malick — J'écris le code qui fait bouger les choses réelles.</h1>
         <p>Du firmware d'un boîtier d'arrosage jusqu'à l'interface web qui le pilote, je livre la chaîne complète. Étudiant ingénieur à Epitech Bénin, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine.</p>
@@ -153,8 +166,7 @@
           <li>Code : <a href="https://github.com/rafickMalick">github.com/rafickMalick</a></li>
         </ul>
         <p class="meta">Rafick Malick — Epitech Bénin · Disponible en remote</p>
-      </div>
-    </noscript>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
