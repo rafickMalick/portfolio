@@ -19,6 +19,142 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <style>
+        /* index.css is loaded via a <link>, which applies even with JS off (its dark
+           theme is JS-driven only for the toggle, not the default). Override both
+           html/body and this wrapper explicitly so the fallback text stays readable. */
+        html, body { background: #fff !important; }
+        .fallback { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; font-family: system-ui, sans-serif; line-height: 1.6; color: #1a1a1a; background: #fff; }
+        .fallback h1 { font-size: 2rem; margin-bottom: 0.25em; }
+        .fallback h2 { margin-top: 2.5em; border-bottom: 1px solid #ddd; padding-bottom: 0.3em; }
+        .fallback h3 { margin-bottom: 0.2em; }
+        .fallback ul { padding-left: 1.2em; }
+        .fallback .project { margin-bottom: 1.5em; }
+        .fallback .meta { color: #666; font-size: 0.9em; }
+      </style>
+      <div class="fallback">
+        <p>Ouvert aux offres &amp; stages · Bénin / remote</p>
+        <h1>Rafick Malick — J'écris le code qui fait bouger les choses réelles.</h1>
+        <p>Du firmware d'un boîtier d'arrosage jusqu'à l'interface web qui le pilote, je livre la chaîne complète. Étudiant ingénieur à Epitech Bénin, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine.</p>
+
+        <h2>Chiffres</h2>
+        <ul>
+          <li>14+ projets menés à terme</li>
+          <li>3 expériences professionnelles</li>
+          <li>2 piles maîtrisées : soft + hard</li>
+          <li>2028 : diplôme Epitech en vue</li>
+        </ul>
+
+        <h2>01 — Pourquoi moi</h2>
+        <p>Les entreprises cherchent deux profils. J'en suis un seul.</p>
+        <h3>I. Du capteur à l'écran</h3>
+        <p>J'écris le firmware qui lit le capteur ET l'application qui l'affiche. Pas de passage de main, donc pas de perte d'information.</p>
+        <h3>II. J'apprends seul, vite</h3>
+        <p>Raytracer en C++, cryptographie PGP, Kubernetes, vision par ordinateur : appris en autonomie, puis livrés en projet réel.</p>
+        <h3>III. Déjà en responsabilité</h3>
+        <p>Stage en développement web, formateur en robotique, puis chef de projet tech pour Techbo Robotique. Je tiens un délai et une équipe.</p>
+
+        <h2>02 — Travaux</h2>
+        <p>Plateformes web en production d'un côté, boîtiers que je conçois et programme de l'autre.</p>
+
+        <div class="project">
+          <h3>01. Sang + — <a href="https://sang-plus-zeta.vercel.app/">démo en ligne</a></h3>
+          <p class="meta">Plateforme · Santé — React, Node.js, PostgreSQL</p>
+          <p>Mise en relation entre donneurs de sang et structures de santé : inscription des donneurs, appels aux dons ciblés et suivi des demandes urgentes.</p>
+        </div>
+        <div class="project">
+          <h3>02. Visa &amp; Haj Bénin</h3>
+          <p class="meta">Automatisation · Administration — Workflow, Node.js, Dashboard</p>
+          <p>Automatisation de la soumission et de la gestion des demandes de visa, avec suivi étape par étape du parcours des pèlerins.</p>
+        </div>
+        <div class="project">
+          <h3>03. Boutique en ligne — <a href="https://dmoc-1.onrender.com/dmoc/home">démo en ligne</a></h3>
+          <p class="meta">E-commerce — React, Paiement, PostgreSQL</p>
+          <p>Catalogue, panier, tunnel de commande et back-office complet de gestion des produits et des commandes.</p>
+        </div>
+        <div class="project">
+          <h3>04. AREA (Action/REAction)</h3>
+          <p class="meta">Fullstack · API — React, OAuth, Docker</p>
+          <p>Plateforme d'automatisation type Zapier : interconnexion dynamique de services web via leurs API, avec authentification OAuth.</p>
+        </div>
+        <div class="project">
+          <h3>05. Smart Irrigation</h3>
+          <p class="meta">IoT · Agritech — ESP32, Capteurs, App mobile</p>
+          <p>Boîtier d'arrosage autonome : capteurs d'humidité et météo, déclenchement automatique des vannes, application mobile de pilotage à distance.</p>
+        </div>
+        <div class="project">
+          <h3>06. Bras robot</h3>
+          <p class="meta">Robotique · Mécanique — Cinématique, Servos, C++</p>
+          <p>Conception mécanique et programmation d'un bras robotisé interactif : cinématique, contrôle des servos, interface de commande.</p>
+        </div>
+        <div class="project">
+          <h3>07. Main robotisée</h3>
+          <p class="meta">Robotique · Vision — OpenCV, Python, Hardware</p>
+          <p>Main robotique qui reproduit en temps réel les gestes humains analysés par vision par ordinateur.</p>
+        </div>
+        <div class="project">
+          <h3>08. Sauvegarde énergétique — <a href="https://powerlense-v1-sigma.vercel.app/">démo en ligne</a></h3>
+          <p class="meta">Énergie · Embarqué — Firmware, Capteurs, Électronique</p>
+          <p>Boîtier de contrôle des circuits énergétiques : un jeu de capteurs surveille la consommation et bascule les circuits pour préserver l'énergie disponible.</p>
+        </div>
+
+        <h2>03 — Outillage</h2>
+        <p>Ce que j'utilise, sans enjoliver.</p>
+        <h3>Logiciel &amp; web</h3>
+        <ul>
+          <li>JavaScript / TypeScript — solide</li>
+          <li>React / Next.js — solide</li>
+          <li>Node.js / Express — solide</li>
+          <li>Python — à l'aise</li>
+          <li>PostgreSQL / SQL — à l'aise</li>
+          <li>PHP — à l'aise</li>
+          <li>Docker / CI-CD — à l'aise</li>
+        </ul>
+        <h3>Embarqué &amp; robotique</h3>
+        <ul>
+          <li>C / Arduino — solide</li>
+          <li>ESP32 / IoT — solide</li>
+          <li>Électronique &amp; capteurs — à l'aise</li>
+          <li>C++ — à l'aise</li>
+          <li>OpenCV / vision — à l'aise</li>
+          <li>ROS — notions</li>
+          <li>CAO / impression 3D — notions</li>
+        </ul>
+        <h3>IA &amp; outils du quotidien</h3>
+        <ul>
+          <li>Claude — solide</li>
+          <li>ChatGPT — solide</li>
+          <li>GitHub Copilot — à l'aise</li>
+          <li>Cursor — à l'aise</li>
+          <li>Git / GitHub — solide</li>
+          <li>Figma — notions</li>
+          <li>Linux / shell — à l'aise</li>
+        </ul>
+        <p><strong>Hors clavier :</strong> Voyage &amp; sport, Robotique, Film &amp; animé, Apprentissage autonome</p>
+        <p><strong>Langues :</strong> Français — courant, Anglais — niveau intermédiaire</p>
+
+        <h2>04 — Parcours</h2>
+        <p>Trois ans, déjà trois expériences.</p>
+        <ul>
+          <li><strong>2023</strong> — Baccalauréat scientifique (Bac C). Obtenu au Bénin.</li>
+          <li><strong>2023 — 2028</strong> — Epitech Bénin. Cursus d'expertise en ingénierie informatique, en cours.</li>
+          <li><strong>2024 · 4 mois</strong> — Développeur web, MarketOptionCenter. Stage de première année : développement web en conditions réelles.</li>
+          <li><strong>2025 · 2 mois</strong> — Formateur robotique, Digital Valeey. Animation d'ateliers et formation en robotique auprès de débutants.</li>
+          <li><strong>Depuis nov. 2025</strong> — Chef de projet tech, Techbo Robotique. Gestion d'équipe et pilotage de projets innovants au sein de l'association.</li>
+          <li><strong>Prochainement</strong> — Votre entreprise. Prêt à apporter mon énergie et ma capacité d'apprentissage à vos équipes.</li>
+        </ul>
+
+        <h2>05 — Contact</h2>
+        <p>Une offre, un stage, un prototype à sortir du garage ? Écrivez-moi : je réponds vite et je vous dis franchement si je suis le bon profil.</p>
+        <ul>
+          <li>Email : <a href="mailto:malickrafick456@gmail.com">malickrafick456@gmail.com</a></li>
+          <li>Téléphone : <a href="tel:+2290151588257">+229 01 51 58 82 57</a></li>
+          <li>Code : <a href="https://github.com/rafickMalick">github.com/rafickMalick</a></li>
+        </ul>
+        <p class="meta">Rafick Malick — Epitech Bénin · Disponible en remote</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

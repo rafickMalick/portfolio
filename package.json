@@ -23,16 +23,9 @@
     "react-i18next": "^16.5.6"
   },
   "devDependencies": {
-    "@prerenderer/renderer-puppeteer": "^1.2.4",
-    "@prerenderer/rollup-plugin": "^0.3.12",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
-    "puppeteer": "^24.43.1",
     "vite": "^7.3.1"
-  },
-  "allowScripts": {
-    "esbuild@0.27.3": true,
-    "puppeteer@24.43.1": true
   }
 }
