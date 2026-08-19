@@ -24,7 +24,7 @@ const Hero = forwardRef(function Hero(_, parallaxRef) {
                         Du firmware d'un boîtier d'arrosage jusqu'à l'interface web qui le pilote, je livre la chaîne complète.
                     </RevealLine>
                     <RevealLine index={4} as="p" className="hero-sub">
-                        Étudiant ingénieur à Epitech Bénin, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine.
+                        Étudiant ingénieur à Epitech, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine.
                     </RevealLine>
                 </div>
             </div>

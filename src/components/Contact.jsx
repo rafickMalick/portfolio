@@ -32,7 +32,7 @@ export default function Contact() {
 
                 <div className="footer-row">
                     <span>Rafick Malick — {year}</span>
-                    <span>Epitech Bénin · Disponible en remote</span>
+                    <span>Epitech · Disponible en remote</span>
                 </div>
             </div>
         </section>

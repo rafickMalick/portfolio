@@ -2,7 +2,7 @@ export const stats = [
     { to: 14, suffix: '+', label: 'Projets menés à terme' },
     { to: 3, suffix: '', label: 'Expériences professionnelles' },
     { to: 2, suffix: '', label: 'Piles maîtrisées : soft + hard' },
-    { to: 2028, suffix: '', label: 'Diplôme Epitech en vue' },
+    { to: 2026, suffix: '', label: 'Diplôme Epitech en vue' },
 ]
 
 export const pillars = [
@@ -143,7 +143,7 @@ export const marquee = [
 
 const rawTimeline = [
     { year: '2023', title: 'Baccalauréat scientifique (Bac C)', desc: 'Obtenu au Bénin.' },
-    { year: '2023 — 2028', title: 'Epitech Bénin', desc: "Cursus d'expertise en ingénierie informatique, en cours." },
+    { year: '2023 — 2026', title: 'Epitech', desc: "Cursus d'expertise en ingénierie informatique, en cours." },
     { year: '2024 · 4 mois', title: 'Développeur web — MarketOptionCenter', desc: 'Stage de première année : développement web en conditions réelles.' },
     { year: '2025 · 2 mois', title: 'Formateur robotique — Digital Valeey', desc: "Animation d'ateliers et formation en robotique auprès de débutants." },
     { year: 'Depuis nov. 2025', title: 'Chef de projet tech — Techbo Robotique', desc: "Gestion d'équipe et pilotage de projets innovants au sein de l'association." },

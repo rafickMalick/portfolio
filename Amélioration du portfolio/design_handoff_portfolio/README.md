@@ -1,7 +1,7 @@
 # Handoff : Portfolio Rafick Malick (v3)
 
 ## Overview
-Refonte complète du portfolio personnel de **Rafick Malick** (développeur fullstack + embarqué/robotique, étudiant Epitech Bénin).
+Refonte complète du portfolio personnel de **Rafick Malick** (développeur fullstack + embarqué/robotique, étudiant Epitech).
 Objectif produit : **convaincre un recruteur en un seul scroll** — l'argumentaire ("pourquoi moi") passe avant la liste des réalisations.
 
 Le site existant à remplacer : https://rafick.vercel.app/ — repo `rafickMalick/portfolio` (React/Vite).
@@ -57,7 +57,7 @@ Ordre vertical, une seule page avec navigation par ancres :
     Chaque ligne est dans un `span` `overflow:hidden` avec la ligne intérieure animée (masque).
   - Filet `border-top:1px solid var(--rule)`, puis 2 colonnes `repeat(auto-fit,minmax(min(100%,290px),1fr))`, gap `clamp(20px,3vw,48px)` :
     - Gauche : `clamp(16px,1.5vw,18px)`, `line-height:1.55` — "Du firmware d'un boîtier d'arrosage jusqu'à l'interface web qui le pilote, je livre la chaîne complète."
-    - Droite : 15px, `var(--soft)`, max-width 520px — "Étudiant ingénieur à Epitech Bénin, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine."
+    - Droite : 15px, `var(--soft)`, max-width 520px — "Étudiant ingénieur à Epitech, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine."
 
 ### 3. Bande défilante (marquee)
 - Bandes haute et basse 1px `var(--rule)`, fond `var(--panel)`, padding `16px 0`, `overflow:hidden`.
@@ -71,7 +71,7 @@ Ordre vertical, une seule page avec navigation par ancres :
 - Cellule : padding `clamp(20px,3vw,38px) clamp(8px,1.6vw,32px) clamp(20px,3vw,38px) 0`.
 - Nombre : Bricolage Grotesque 700, `clamp(22px,4.4vw,40px)`, `line-height:1`, `letter-spacing:-.03em` — **animé en compteur** (voir Interactions).
 - Libellé : mono `clamp(9px,1.5vw,11px)` uppercase `letter-spacing:.06em`, `var(--muted)`, `line-height:1.45`.
-- Données : `14+` Projets menés à terme · `3` Expériences professionnelles · `2` Piles maîtrisées : soft + hard · `2028` Diplôme Epitech en vue.
+- Données : `14+` Projets menés à terme · `3` Expériences professionnelles · `2` Piles maîtrisées : soft + hard · `2026` Diplôme Epitech en vue.
 
 ### 5. `01 — Pourquoi moi`
 - Étiquette de section : mono 11.5px uppercase `letter-spacing:.1em`, `var(--accent)`, `margin-bottom:16px`.
@@ -155,7 +155,7 @@ Ordre vertical, une seule page avec navigation par ancres :
 | Période | Titre | Description |
 |---|---|---|
 | 2023 | Baccalauréat scientifique (Bac C) | Obtenu au Bénin. |
-| 2023 — 2028 | Epitech Bénin | Cursus d'expertise en ingénierie informatique, en cours. |
+| 2023 — 2026 | Epitech | Cursus d'expertise en ingénierie informatique, en cours. |
 | 2024 · 4 mois | Développeur web — MarketOptionCenter | Stage de première année : développement web en conditions réelles. |
 | 2025 · 2 mois | Formateur robotique — Digital Valeey | Animation d'ateliers et formation en robotique auprès de débutants. |
 | Depuis nov. 2025 | Chef de projet tech — Techbo Robotique | Gestion d'équipe et pilotage de projets innovants au sein de l'association. |
@@ -171,7 +171,7 @@ Ordre vertical, une seule page avec navigation par ancres :
   hover → `padding-left` +16px et fond `var(--bg)` (`.4s cubic-bezier(.2,.8,.2,1)`).
   - Libellé mono 10.5px uppercase `var(--muted)` ; valeur `clamp(14px,1.2vw,15.5px)`, `overflow-wrap:anywhere`.
   - EMAIL → `mailto:malickrafick456@gmail.com` · TÉLÉPHONE → `tel:+2290151588257` (affiché "+229 01 51 58 82 57") · CODE → `https://github.com/rafickMalick`.
-- Pied : flex `justify-content:space-between`, wrap, mono 11px uppercase `var(--muted)` — "Rafick Malick — <année>" / "Epitech Bénin · Disponible en remote".
+- Pied : flex `justify-content:space-between`, wrap, mono 11px uppercase `var(--muted)` — "Rafick Malick — <année>" / "Epitech · Disponible en remote".
 
 ---
 
