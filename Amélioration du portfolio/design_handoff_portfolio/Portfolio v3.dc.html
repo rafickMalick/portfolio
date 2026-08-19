@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Work+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:oklch(14% 0.014 265)}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes floatDot{0%,100%{opacity:0.5}50%{opacity:1}}
+  @keyframes lineIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  [data-rail-hint]{display:none}
+  @media (max-width:860px){
+    [data-rail-hint]{display:flex}
+    [data-projects]{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;border-top:none;padding:2px 2px 16px;scrollbar-width:thin}
+    [data-project-row]{flex:0 0 min(74vw,300px);scroll-snap-align:start;border:1px solid var(--rule,oklch(26% 0.014 265));border-bottom:1px solid var(--rule,oklch(26% 0.014 265));border-radius:6px;padding:16px;background:var(--panel,oklch(16% 0.015 265));display:flex;flex-direction:column}
+    [data-prow-head]{flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:8px}
+    [data-prow-head] > div:last-child{margin-left:0}
+    [data-prow-body]{padding-left:0;flex:1;flex-direction:column;gap:12px}
+  }
+</style>
+</helmet>
+
+<div style="font-family:'Work Sans',sans-serif;background:var(--bg, oklch(14% 0.014 265));color:var(--text, oklch(95% 0.008 90));min-height:100vh;overflow-x:hidden;position:relative;transition:background 0.45s ease,color 0.45s ease">
+
+  <div id="rk-progress" style="position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent, oklch(87% 0.2 120));transform:scaleX(0);transform-origin:0 50%;z-index:99;will-change:transform"></div>
+  <div id="rk-glow" style="position:fixed;top:0;left:0;width:min(520px,90vw);height:min(520px,90vw);border-radius:50%;pointer-events:none;z-index:0;opacity:0;background:radial-gradient(circle,var(--glow, oklch(87% 0.2 120 / 0.10)) 0%,transparent 65%);will-change:transform;transition:opacity 0.6s ease"></div>
+
+  <!-- BARRE -->
+  <div style="position:sticky;top:0;z-index:60;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 16px;padding:12px clamp(18px,4vw,40px);background:var(--nav, oklch(14% 0.014 265 / 0.82));backdrop-filter:blur(14px);border-bottom:1px solid var(--rule, oklch(26% 0.014 265));font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.09em;text-transform:uppercase">
+    <span style="color:var(--text, oklch(95% 0.008 90))">Rafick Malick</span>
+    <div style="display:flex;gap:12px clamp(14px,2vw,26px);align-items:center;flex-wrap:wrap">
+      <a href="#travaux" style="color:var(--link, oklch(70% 0.012 265));text-decoration:none;transition:color 0.3s" style-hover="color:var(--accent, oklch(87% 0.2 120))">Travaux</a>
+      <a href="#outillage" style="color:var(--link, oklch(70% 0.012 265));text-decoration:none;transition:color 0.3s" style-hover="color:var(--accent, oklch(87% 0.2 120))">Outillage</a>
+      <a href="#parcours" style="color:var(--link, oklch(70% 0.012 265));text-decoration:none;transition:color 0.3s" style-hover="color:var(--accent, oklch(87% 0.2 120))">Parcours</a>
+      <button onclick="{{ toggleTheme }}" aria-label="Changer de thème" style="background:none;border:1px solid var(--rule-2, oklch(28% 0.014 265));color:var(--soft, oklch(72% 0.01 265));font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;padding:7px 13px;border-radius:2px;cursor:pointer;transition:color 0.3s,border-color 0.3s" style-hover="color:var(--accent, oklch(87% 0.2 120));border-color:var(--accent, oklch(87% 0.2 120))">{{ themeLabel }}</button>
+      <a href="#contact" style="color:var(--bg, oklch(14% 0.014 265));background:var(--accent, oklch(87% 0.2 120));text-decoration:none;padding:8px 16px;border-radius:2px;transition:transform 0.3s cubic-bezier(.2,.8,.2,1)" style-hover="transform:translateY(-2px)">Me recruter</a>
+    </div>
+  </div>
+
+  <!-- OUVERTURE -->
+  <header style="position:relative;padding:clamp(64px,9vw,110px) clamp(18px,4vw,40px) clamp(52px,7vw,84px);max-width:1300px;margin:0 auto;z-index:1">
+    <div id="rk-parallax" style="position:absolute;inset:-60px;background-image:radial-gradient(var(--dot, oklch(30% 0.016 265)) 1px,transparent 1px);background-size:30px 30px;opacity:0.6;pointer-events:none;will-change:transform"></div>
+    <div style="position:relative">
+      <div data-line style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--rule-2, oklch(28% 0.014 265));padding:8px 15px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--soft, oklch(72% 0.01 265));margin-bottom:36px">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent, oklch(87% 0.2 120));animation:floatDot 2.2s ease-in-out infinite"></span>
+        Ouvert aux offres &amp; stages · Bénin / remote
+      </div>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,6.6vw,88px);line-height:0.94;margin:0 0 32px;letter-spacing:-0.035em;max-width:1120px">
+        <span style="display:block;overflow:hidden;padding-bottom:2px"><span data-line style="display:block">J'écris le code</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:2px"><span data-line style="display:block">qui fait bouger</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:2px"><span data-line style="display:block;color:var(--accent, oklch(87% 0.2 120))">les choses réelles.</span></span>
+      </h1>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:clamp(20px,3vw,48px);border-top:1px solid var(--rule, oklch(26% 0.014 265));padding-top:30px">
+        <p data-line style="font-size:clamp(16px,1.5vw,18px);line-height:1.55;margin:0;text-wrap:pretty">Du firmware d'un boîtier d'arrosage jusqu'à l'interface web qui le pilote, je livre la chaîne complète.</p>
+        <p data-line style="font-size:15px;line-height:1.65;margin:0;color:var(--soft, oklch(72% 0.01 265));text-wrap:pretty;max-width:520px">Étudiant ingénieur à Epitech Bénin, autodidacte compulsif, déjà en responsabilité sur des projets qui tournent en conditions réelles — pas seulement sur ma machine.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANDE DÉFILANTE -->
+  <sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}">
+    <div style="border-top:1px solid var(--rule, oklch(26% 0.014 265));border-bottom:1px solid var(--rule, oklch(26% 0.014 265));overflow:hidden;padding:16px 0;background:var(--panel, oklch(16% 0.015 265));position:relative;z-index:1">
+      <div style="display:flex;width:max-content;animation:marquee 34s linear infinite;gap:0">
+        <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.11em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));white-space:nowrap">
+          <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="12">
+            <span style="display:flex;align-items:center;gap:44px">{{ m }}<span style="width:4px;height:4px;border-radius:50%;background:var(--accent, oklch(87% 0.2 120));opacity:0.55"></span></span>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.11em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));white-space:nowrap">
+          <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="12">
+            <span style="display:flex;align-items:center;gap:44px">{{ m }}<span style="width:4px;height:4px;border-radius:50%;background:var(--accent, oklch(87% 0.2 120));opacity:0.55"></span></span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- CHIFFRES -->
+  <section style="max-width:1300px;margin:0 auto;padding:0 clamp(18px,4vw,40px);position:relative;z-index:1">
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule, oklch(26% 0.014 265))">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div data-reveal style="padding:clamp(20px,3vw,38px) clamp(8px,1.6vw,32px) clamp(20px,3vw,38px) 0">
+          <div data-count="{{ s.to }}" data-suffix="{{ s.suffix }}" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,4.4vw,40px);line-height:1;letter-spacing:-0.03em;margin-bottom:8px">{{ s.initial }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:clamp(9px,1.5vw,11px);letter-spacing:0.06em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));line-height:1.45;text-wrap:pretty">{{ s.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- POURQUOI -->
+  <section id="profil" style="max-width:1300px;margin:0 auto;padding:clamp(56px,8vw,88px) clamp(18px,4vw,40px) clamp(48px,7vw,76px);position:relative;z-index:1">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent, oklch(87% 0.2 120));margin-bottom:16px">01 — Pourquoi moi</div>
+    <h2 data-line style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(24px,2.9vw,38px);line-height:1.08;margin:0 0 36px;max-width:760px;letter-spacing:-0.03em">Les entreprises cherchent deux profils. J'en suis un seul.</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+        <div data-reveal data-tilt style="background:var(--panel-2, oklch(17% 0.015 265));border:1px solid var(--rule, oklch(26% 0.014 265));padding:26px 24px;border-radius:6px;position:relative;overflow:hidden;transition:transform 0.5s cubic-bezier(.2,.8,.2,1),border-color 0.4s,background 0.4s" style-hover="border-color:var(--rule-3, oklch(45% 0.05 265));background:var(--panel-3, oklch(19% 0.016 265))">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.09em;color:var(--accent, oklch(87% 0.2 120));margin-bottom:24px">{{ p.num }}</div>
+          <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;margin:0 0 10px;line-height:1.15;letter-spacing:-0.02em">{{ p.title }}</h3>
+          <p style="color:var(--soft, oklch(72% 0.01 265));font-size:14px;line-height:1.65;margin:0">{{ p.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- TRAVAUX -->
+  <section id="travaux" style="max-width:1300px;margin:0 auto;padding:16px clamp(18px,4vw,40px) clamp(48px,7vw,76px);position:relative;z-index:1">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent, oklch(87% 0.2 120));margin-bottom:16px">02 — Travaux</div>
+    <h2 data-line style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(24px,2.9vw,38px);line-height:1.08;margin:0 0 12px;letter-spacing:-0.03em">Huit projets, deux mondes</h2>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:26px">
+      <p style="color:var(--soft, oklch(72% 0.01 265));font-size:15.5px;line-height:1.6;margin:0;max-width:560px">Plateformes web en production d'un côté, boîtiers que je conçois et programme de l'autre.</p>
+      <div data-rail-hint style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));align-items:center;gap:8px">Faites défiler <span style="display:inline-block;width:26px;height:1px;background:var(--accent, oklch(87% 0.2 120))"></span>→</div>
+    </div>
+    <div data-projects style="border-top:1px solid var(--rule, oklch(26% 0.014 265))">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+        <div data-reveal data-project-row style="border-bottom:1px solid var(--rule, oklch(26% 0.014 265));padding:22px 20px 22px 4px;background:transparent;transition:padding-left 0.45s cubic-bezier(.2,.8,.2,1),background 0.45s ease" style-hover="padding-left:20px;background:var(--panel-2, oklch(17% 0.015 265))">
+          <div data-prow-head style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-bottom:10px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--accent, oklch(87% 0.2 120));min-width:26px">{{ p.num }}</div>
+            <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(18px,1.9vw,26px);margin:0;line-height:1.14;letter-spacing:-0.025em;text-wrap:pretty">{{ p.title }}</h3>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-left:auto">{{ p.cat }}</div>
+          </div>
+          <div data-prow-body style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 24px;padding-left:46px">
+            <p style="color:var(--soft, oklch(72% 0.01 265));font-size:14px;line-height:1.6;margin:0;flex:1 1 320px;max-width:640px">{{ p.desc }}</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;flex:0 1 auto;align-content:flex-start">
+              <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.05em;border:1px solid var(--rule-2, oklch(28% 0.014 265));padding:5px 9px;border-radius:2px;color:var(--soft, oklch(72% 0.01 265));white-space:nowrap;flex:none">{{ t }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- OUTILLAGE -->
+  <section id="outillage" style="max-width:1300px;margin:0 auto;padding:16px clamp(18px,4vw,40px) clamp(48px,7vw,76px);position:relative;z-index:1">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent, oklch(87% 0.2 120));margin-bottom:16px">03 — Outillage</div>
+    <h2 data-line style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(24px,2.9vw,38px);line-height:1.08;margin:0 0 44px;letter-spacing:-0.03em;margin-bottom:32px">Ce que j'utilise, sans enjoliver</h2>
+    <div style="display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:clamp(16px,1.7vw,20px);margin-bottom:26px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 18px;scrollbar-width:thin;scrollbar-color:var(--rule-2, oklch(28% 0.014 265)) transparent">
+      <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="3">
+        <div data-reveal style="scroll-snap-align:start;border:1px solid var(--rule, oklch(26% 0.014 265));background:var(--panel, oklch(16% 0.015 265));padding:clamp(20px,1.9vw,24px) clamp(18px,1.8vw,22px);border-radius:6px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:{{ g.color }};margin-bottom:8px">{{ g.title }}</div>
+          <div style="font-size:12.5px;color:var(--muted, oklch(58% 0.012 265));line-height:1.5;margin-bottom:18px">{{ g.note }}</div>
+          <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule, oklch(26% 0.014 265))">
+            <sc-for list="{{ g.items }}" as="s" hint-placeholder-count="6">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--rule, oklch(26% 0.014 265))">
+                <span style="font-size:clamp(12px,1.1vw,13.5px)">{{ s.name }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.07em;text-transform:uppercase;color:{{ s.color }};white-space:nowrap">{{ s.level }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-right:6px">Hors clavier</span>
+      <sc-for list="{{ passions }}" as="p" hint-placeholder-count="4">
+        <span style="border:1px solid var(--rule-2, oklch(28% 0.014 265));padding:7px 13px;font-size:13px;color:var(--soft, oklch(72% 0.01 265));border-radius:100px;white-space:nowrap;flex:none;transition:border-color 0.35s,color 0.35s" style-hover="border-color:var(--accent, oklch(87% 0.2 120));color:var(--text, oklch(95% 0.008 90))">{{ p }}</span>
+      </sc-for>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-right:6px">Langues</span>
+      <sc-for list="{{ languages }}" as="l" hint-placeholder-count="2">
+        <span style="border:1px solid var(--rule-2, oklch(28% 0.014 265));padding:7px 13px;font-size:13px;color:var(--soft, oklch(72% 0.01 265));border-radius:100px;white-space:nowrap;flex:none">{{ l }}</span>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours" style="max-width:1300px;margin:0 auto;padding:16px clamp(18px,4vw,40px) clamp(56px,8vw,92px);position:relative;z-index:1">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent, oklch(87% 0.2 120));margin-bottom:16px">04 — Parcours</div>
+    <h2 data-line style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(24px,2.9vw,38px);line-height:1.08;margin:0 0 32px;letter-spacing:-0.03em">Trois ans, déjà trois expériences</h2>
+    <div style="border-top:1px solid var(--rule, oklch(26% 0.014 265))">
+      <sc-for list="{{ timeline }}" as="e" hint-placeholder-count="6">
+        <div data-reveal style="border-bottom:1px solid var(--rule, oklch(26% 0.014 265));padding:20px 4px;display:grid;grid-template-columns:minmax(0,clamp(88px,17vw,170px)) 22px minmax(0,1fr);gap:clamp(12px,2vw,24px);background:{{ e.rowBg }}">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted, oklch(58% 0.012 265));padding-top:4px">{{ e.year }}</div>
+          <div style="display:flex;justify-content:center;padding-top:8px">
+            <div data-pop style="width:9px;height:9px;border-radius:50%;background:{{ e.dot }}"></div>
+          </div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:17px;margin-bottom:5px;letter-spacing:-0.02em;color:{{ e.titleColor }}">{{ e.title }}</div>
+            <div style="color:var(--soft, oklch(72% 0.01 265));font-size:13.5px;line-height:1.6">{{ e.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="border-top:1px solid var(--rule, oklch(26% 0.014 265));background:var(--deep, oklch(11% 0.012 265));position:relative;z-index:1">
+    <div style="max-width:1300px;margin:0 auto;padding:clamp(64px,9vw,100px) clamp(18px,4vw,40px)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent, oklch(87% 0.2 120));margin-bottom:20px">05 — Suite</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(30px,4.8vw,64px);line-height:0.96;margin:0 0 24px;letter-spacing:-0.035em">
+        <span style="display:block;overflow:hidden;padding-bottom:2px"><span data-line style="display:block">Le prochain projet</span></span>
+        <span style="display:block;overflow:hidden;padding-bottom:2px"><span data-line style="display:block">est le vôtre.</span></span>
+      </h2>
+      <p style="font-size:16.5px;line-height:1.6;max-width:560px;margin:0 0 40px;color:var(--soft, oklch(72% 0.01 265))">Une offre, un stage, un prototype à sortir du garage ? Écrivez-moi : je réponds vite et je vous dis franchement si je suis le bon profil.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));border-top:1px solid var(--rule, oklch(26% 0.014 265))">
+        <a href="mailto:malickrafick456@gmail.com" style="text-decoration:none;color:var(--text, oklch(95% 0.008 90));padding:26px 16px 26px 0;border-bottom:1px solid var(--rule, oklch(26% 0.014 265));border-right:1px solid var(--rule, oklch(26% 0.014 265));display:block;transition:padding-left 0.4s cubic-bezier(.2,.8,.2,1),background 0.4s" style-hover="padding-left:16px;background:var(--bg, oklch(14% 0.014 265))">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-bottom:10px">Email</div>
+          <div style="font-size:clamp(14px,1.2vw,15.5px);overflow-wrap:anywhere">malickrafick456@gmail.com</div>
+        </a>
+        <a href="tel:+2290151588257" style="text-decoration:none;color:var(--text, oklch(95% 0.008 90));padding:26px 16px 26px clamp(0px,2vw,24px);border-bottom:1px solid var(--rule, oklch(26% 0.014 265));border-right:1px solid var(--rule, oklch(26% 0.014 265));display:block;transition:padding-left 0.4s cubic-bezier(.2,.8,.2,1),background 0.4s" style-hover="padding-left:40px;background:var(--bg, oklch(14% 0.014 265))">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-bottom:10px">Téléphone</div>
+          <div style="font-size:clamp(14px,1.2vw,15.5px);overflow-wrap:anywhere">+229 01 51 58 82 57</div>
+        </a>
+        <a href="https://github.com/rafickMalick" style="text-decoration:none;color:var(--text, oklch(95% 0.008 90));padding:26px 16px 26px clamp(0px,2vw,24px);border-bottom:1px solid var(--rule, oklch(26% 0.014 265));display:block;transition:padding-left 0.4s cubic-bezier(.2,.8,.2,1),background 0.4s" style-hover="padding-left:40px;background:var(--bg, oklch(14% 0.014 265))">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265));margin-bottom:10px">Code</div>
+          <div style="font-size:clamp(14px,1.2vw,15.5px);overflow-wrap:anywhere">github.com/rafickMalick</div>
+        </a>
+      </div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px 20px;padding-top:36px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted, oklch(58% 0.012 265))">
+        <span>Rafick Malick — {{ year }}</span>
+        <span>Epitech Bénin · Disponible en remote</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1300},&quot;showMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Contenu&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animation&quot;}}">
+class Component extends DCLogic {
+  state = { theme: (typeof localStorage !== 'undefined' && localStorage.getItem('rk-theme-v3')) || 'dark' };
+
+  palettes = {
+    dark: {
+      '--bg': 'oklch(14% 0.014 265)', '--nav': 'oklch(14% 0.014 265 / 0.82)',
+      '--panel': 'oklch(16% 0.015 265)', '--panel-2': 'oklch(17% 0.015 265)', '--panel-3': 'oklch(19% 0.016 265)',
+      '--deep': 'oklch(11% 0.012 265)', '--rule': 'oklch(26% 0.014 265)', '--rule-2': 'oklch(28% 0.014 265)',
+      '--rule-3': 'oklch(45% 0.05 265)', '--dot': 'oklch(30% 0.016 265)',
+      '--text': 'oklch(95% 0.008 90)', '--soft': 'oklch(74% 0.01 265)', '--muted': 'oklch(60% 0.012 265)',
+      '--link': 'oklch(72% 0.012 265)', '--accent': 'oklch(87% 0.2 120)', '--accent-2': 'oklch(72% 0.16 30)',
+      '--accent-3': 'oklch(78% 0.13 250)', '--glow': 'oklch(87% 0.2 120 / 0.10)'
+    },
+    light: {
+      '--bg': 'oklch(98% 0.006 95)', '--nav': 'oklch(98% 0.006 95 / 0.85)',
+      '--panel': 'oklch(96% 0.008 95)', '--panel-2': 'oklch(94% 0.01 95)', '--panel-3': 'oklch(92% 0.012 95)',
+      '--deep': 'oklch(94.5% 0.01 95)', '--rule': 'oklch(87% 0.008 95)', '--rule-2': 'oklch(82% 0.01 95)',
+      '--rule-3': 'oklch(62% 0.02 265)', '--dot': 'oklch(88% 0.01 95)',
+      '--text': 'oklch(21% 0.02 265)', '--soft': 'oklch(42% 0.015 265)', '--muted': 'oklch(50% 0.015 265)',
+      '--link': 'oklch(44% 0.015 265)', '--accent': 'oklch(52% 0.16 128)', '--accent-2': 'oklch(54% 0.18 32)',
+      '--accent-3': 'oklch(48% 0.15 250)', '--glow': 'oklch(52% 0.16 128 / 0.08)'
+    }
+  };
+
+  applyTheme(t) {
+    const p = this.palettes[t] || this.palettes.dark;
+    const root = document.documentElement;
+    Object.keys(p).forEach(k => root.style.setProperty(k, p[k]));
+    document.body.style.background = p['--bg'];
+    document.body.style.transition = 'background 0.45s ease';
+  }
+
+  toggleTheme = () => this.setState(s => {
+    const next = s.theme === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem('rk-theme-v3', next); } catch (e) {}
+    this.applyTheme(next);
+    return { theme: next };
+  });
+
+  componentDidMount() {
+    this.applyTheme(this.state.theme);
+    const reduce = this.props.reduceMotion === true ||
+      (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this._reduce = reduce;
+
+    // --- reveals -------------------------------------------------------
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        this._fired = true;
+        this._show(en.target);
+        this._io.unobserve(en.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    this._show = (el) => {
+      if (el.hasAttribute('data-bar')) { el.style.width = el.getAttribute('data-w'); return; }
+      if (el.hasAttribute('data-count')) { this._count(el); return; }
+      if (el.hasAttribute('data-pop')) { el.style.transform = 'scale(1)'; el.style.opacity = '1'; return; }
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+
+    this._prep = () => {
+      const sel = '[data-line]:not([data-p]),[data-reveal]:not([data-p]),[data-bar]:not([data-p]),[data-count]:not([data-p]),[data-pop]:not([data-p])';
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.setAttribute('data-p', '1');
+        if (reduce) { el.setAttribute('data-w', el.style.width || ''); this._show(el); return; }
+        const d = (i % 5) * 70;
+        if (el.hasAttribute('data-bar')) {
+          el.setAttribute('data-w', el.style.width || '0%');
+          el.style.width = '0%';
+          el.style.transition = 'width 1.15s cubic-bezier(.16,.84,.24,1) ' + d + 'ms';
+        } else if (el.hasAttribute('data-pop')) {
+          el.style.opacity = '0';
+          el.style.transform = 'scale(0)';
+          el.style.transition = 'transform 0.6s cubic-bezier(.2,1.5,.4,1) ' + d + 'ms, opacity 0.4s ease ' + d + 'ms';
+        } else if (el.hasAttribute('data-line')) {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(105%)';
+          el.style.transition = 'transform 0.95s cubic-bezier(.16,.84,.24,1) ' + d + 'ms, opacity 0.7s ease ' + d + 'ms';
+        } else if (el.hasAttribute('data-count')) {
+          el.style.opacity = '1';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(26px)';
+          el.style.transition = 'opacity 0.8s cubic-bezier(.16,.84,.24,1) ' + d + 'ms, transform 0.8s cubic-bezier(.16,.84,.24,1) ' + d + 'ms, border-color 0.4s, background 0.45s, padding 0.45s cubic-bezier(.2,.8,.2,1)';
+        }
+        this._io.observe(el);
+      });
+    };
+    this._prep();
+    this._scan = setInterval(this._prep, 500);
+
+    // --- count-up ------------------------------------------------------
+    this._count = (el) => {
+      const to = parseFloat(el.getAttribute('data-count')) || 0;
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (reduce) { el.textContent = to + suffix; return; }
+      const dur = 1300, t0 = performance.now();
+      const tick = (t) => {
+        const k = Math.min(1, (t - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        el.textContent = Math.round(to * e) + suffix;
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    // --- smooth pointer glow + parallax + progress ---------------------
+    const glow = document.getElementById('rk-glow');
+    const par = document.getElementById('rk-parallax');
+    const bar = document.getElementById('rk-progress');
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2, gx = mx, gy = my, prog = 0;
+
+    this._move = (e) => { mx = e.clientX; my = e.clientY; if (glow && !reduce) glow.style.opacity = '1'; };
+    window.addEventListener('pointermove', this._move, { passive: true });
+
+    const loop = () => {
+      gx += (mx - gx) * 0.075;
+      gy += (my - gy) * 0.075;
+      if (glow && !reduce) glow.style.transform = 'translate3d(' + (gx - 260) + 'px,' + (gy - 260) + 'px,0)';
+      if (par && !reduce) par.style.transform = 'translate3d(' + ((gx / window.innerWidth - 0.5) * -22) + 'px,' + ((gy / window.innerHeight - 0.5) * -16) + 'px,0)';
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const target = h > 0 ? Math.min(1, window.scrollY / h) : 0;
+      prog += (target - prog) * 0.12;
+      if (bar) bar.style.transform = 'scaleX(' + prog.toFixed(4) + ')';
+      this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+
+    this._safety = setTimeout(() => {
+      if (this._fired) return;
+      document.querySelectorAll('[data-p]').forEach(el => this._show(el));
+    }, 2200);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._scan);
+    clearTimeout(this._safety);
+    cancelAnimationFrame(this._raf);
+    window.removeEventListener('pointermove', this._move);
+    if (this._io) this._io.disconnect();
+  }
+
+  renderVals() {
+    const lime = 'var(--accent)';
+    const coral = 'var(--accent-2)';
+    const ink = 'var(--text)';
+
+    const stats = [
+      { to: 14, suffix: '+', initial: '0+', label: 'Projets menés à terme' },
+      { to: 3, suffix: '', initial: '0', label: 'Expériences professionnelles' },
+      { to: 2, suffix: '', initial: '0', label: 'Piles maîtrisées : soft + hard' },
+      { to: 2028, suffix: '', initial: '0', label: 'Diplôme Epitech en vue' }
+    ];
+
+    const pillars = [
+      { num: 'I', title: 'Du capteur à l\u2019écran', desc: "J'écris le firmware qui lit le capteur ET l'application qui l'affiche. Pas de passage de main, donc pas de perte d'information." },
+      { num: 'II', title: "J'apprends seul, vite", desc: 'Raytracer en C++, cryptographie PGP, Kubernetes, vision par ordinateur : appris en autonomie, puis livrés en projet réel.' },
+      { num: 'III', title: 'Déjà en responsabilité', desc: 'Stage en développement web, formateur en robotique, puis chef de projet tech pour Techbo Robotique. Je tiens un délai et une équipe.' }
+    ];
+
+    const raw = [
+      { cat: 'Plateforme · Santé', title: 'Sang +', desc: 'Mise en relation entre donneurs de sang et structures de santé : inscription des donneurs, appels aux dons ciblés et suivi des demandes urgentes.', tags: ['React', 'Node.js', 'PostgreSQL'] },
+      { cat: 'Automatisation · Administration', title: 'Visa & Haj Bénin', desc: 'Automatisation de la soumission et de la gestion des demandes de visa, avec suivi étape par étape du parcours des pèlerins.', tags: ['Workflow', 'Node.js', 'Dashboard'] },
+      { cat: 'E-commerce', title: 'Boutique en ligne', desc: 'Catalogue, panier, tunnel de commande et back-office complet de gestion des produits et des commandes.', tags: ['React', 'Paiement', 'PostgreSQL'] },
+      { cat: 'Fullstack · API', title: 'AREA (Action/REAction)', desc: "Plateforme d'automatisation type Zapier : interconnexion dynamique de services web via leurs API, avec authentification OAuth.", tags: ['React', 'OAuth', 'Docker'] },
+      { cat: 'IoT · Agritech', title: 'Smart Irrigation', desc: "Boîtier d'arrosage autonome : capteurs d'humidité et météo, déclenchement automatique des vannes, application mobile de pilotage à distance.", tags: ['ESP32', 'Capteurs', 'App mobile'] },
+      { cat: 'Robotique · Mécanique', title: 'Bras robot', desc: "Conception mécanique et programmation d'un bras robotisé interactif : cinématique, contrôle des servos, interface de commande.", tags: ['Cinématique', 'Servos', 'C++'] },
+      { cat: 'Robotique · Vision', title: 'Main robotisée', desc: 'Main robotique qui reproduit en temps réel les gestes humains analysés par vision par ordinateur.', tags: ['OpenCV', 'Python', 'Hardware'] },
+      { cat: 'Énergie · Embarqué', title: 'Sauvegarde énergétique', desc: "Boîtier de contrôle des circuits énergétiques : un jeu de capteurs surveille la consommation et bascule les circuits pour préserver l'énergie disponible.", tags: ['Firmware', 'Capteurs', 'Électronique'] }
+    ];
+    const projects = raw.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, '0') }));
+
+    const lv = {
+      solide: 'var(--accent)',
+      'à l’aise': 'var(--text)',
+      'en cours': 'var(--accent-2)',
+      notions: 'var(--muted)'
+    };
+    const mk = (arr) => arr.map(s => ({ name: s[0], level: s[1], color: lv[s[1]] || 'var(--soft)' }));
+    const skillGroups = [
+      { title: 'Logiciel & web', color: 'var(--accent)', note: 'Ma base quotidienne, utilisée sur des projets livrés.',
+        items: mk([['JavaScript / TypeScript', 'solide'], ['React / Next.js', 'solide'], ['Node.js / Express', 'solide'], ['Python', 'à l’aise'], ['PostgreSQL / SQL', 'à l’aise'], ['PHP', 'à l’aise'], ['Docker / CI-CD', 'à l’aise']]) },
+      { title: 'Embarqué & robotique', color: 'var(--accent-2)', note: 'Le terrain : capteurs, cartes, mécanique.',
+        items: mk([['C / Arduino', 'solide'], ['ESP32 / IoT', 'solide'], ['Électronique & capteurs', 'à l’aise'], ['C++', 'à l’aise'], ['OpenCV / vision', 'à l’aise'], ['ROS', 'notions'], ['CAO / impression 3D', 'notions']]) },
+      { title: 'IA & outils du quotidien', color: 'var(--accent-3)', note: 'Utilisés pour aller plus vite, jamais pour livrer à l’aveugle.',
+        items: mk([['Claude', 'solide'], ['ChatGPT', 'solide'], ['GitHub Copilot', 'à l’aise'], ['Cursor', 'à l’aise'], ['Git / GitHub', 'solide'], ['Figma', 'notions'], ['Linux / shell', 'à l’aise']]) }
+    ];
+    const passions = ['Voyage & sport', 'Robotique', 'Film & animé', 'Apprentissage autonome'];
+    const languages = ['Français — courant', 'Anglais — niveau intermédiaire'];
+    const marquee = ['C / C++', 'React', 'Node.js', 'ESP32', 'Python', 'OpenCV', 'ROS', 'Docker', 'PostgreSQL', 'Arduino', 'Next.js', 'Firmware'];
+
+    const timeline = [
+      { year: '2023', title: 'Baccalauréat scientifique (Bac C)', desc: 'Obtenu au Bénin.' },
+      { year: '2023 — 2028', title: 'Epitech Bénin', desc: "Cursus d'expertise en ingénierie informatique, en cours." },
+      { year: '2024 · 4 mois', title: 'Développeur web — MarketOptionCenter', desc: 'Stage de première année : développement web en conditions réelles.' },
+      { year: '2025 · 2 mois', title: 'Formateur robotique — Digital Valeey', desc: "Animation d'ateliers et formation en robotique auprès de débutants." },
+      { year: 'Depuis nov. 2025', title: 'Chef de projet tech — Techbo Robotique', desc: "Gestion d'équipe et pilotage de projets innovants au sein de l'association." },
+      { year: 'Prochainement', title: 'Votre entreprise', desc: "Prêt à apporter mon énergie et ma capacité d'apprentissage à vos équipes.", highlight: true }
+    ].map(e => ({
+      ...e,
+      dot: e.highlight ? coral : lime,
+      titleColor: e.highlight ? coral : ink,
+      rowBg: e.highlight ? 'var(--panel)' : 'transparent'
+    }));
+
+    return { stats, pillars, projects, skillGroups, passions, languages, marquee, timeline,
+      showMarquee: this.props.showMarquee !== false, year: new Date().getFullYear(),
+      toggleTheme: this.toggleTheme,
+      themeLabel: this.state.theme === 'light' ? 'Sombre' : 'Clair' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,50 +1,38 @@
-import { useState } from 'react'
+import { useRef } from 'react'
+import Nav from './components/Nav'
 import Hero from './components/Hero'
-import Profile from './components/Profile'
-import ThemeToggle from './components/ThemeToggle'
-import LanguageSwitcher from './components/LanguageSwitcher'
-import Projects from './components/Projects'
-import Roadmap from './components/Roadmap'
-import Skills from './components/Skills'
+import Marquee from './components/Marquee'
+import Stats from './components/Stats'
+import WhyMe from './components/WhyMe'
+import Work from './components/Work'
+import Tooling from './components/Tooling'
+import Timeline from './components/Timeline'
 import Contact from './components/Contact'
+import useTheme from './hooks/useTheme'
+import useScrollFX from './hooks/useScrollFX'
 
 function App() {
-    const [theme, setTheme] = useState('it') // 'it' | 'robotique'
+    const { theme, toggleTheme } = useTheme()
+    const glowRef = useRef(null)
+    const parallaxRef = useRef(null)
+    const progressRef = useRef(null)
+
+    useScrollFX({ glowRef, parallaxRef, progressRef })
 
     return (
-        <div className="app-container">
-            {/* Dynamic Background Effect depending on theme */}
-            <div
-                className="background-glow it-glow"
-                style={{ opacity: theme === 'it' ? 0.35 : 0, transition: 'opacity 0.8s ease' }}
-            ></div>
-            <div
-                className="background-glow robot-glow"
-                style={{ opacity: theme === 'robotique' ? 0.35 : 0, transition: 'opacity 0.8s ease' }}
-            ></div>
+        <div>
+            <div className="rk-progress" ref={progressRef} />
+            <div className="rk-glow" ref={glowRef} />
 
-            <header className="app-header">
-                <LanguageSwitcher />
-            </header>
-
-            <main>
-                <Hero />
-                <Profile />
-
-                {/* The Toggle that controls the layout perspective */}
-                <div className="sticky-toggle-container">
-                    <ThemeToggle theme={theme} setTheme={setTheme} />
-                </div>
-
-                <Projects theme={theme} />
-                <Roadmap />
-                <Skills theme={theme} />
-                <Contact />
-            </main>
-
-            <footer className="footer text-center">
-                <p>© 2026 - Conçu avec passion & React</p>
-            </footer>
+            <Nav theme={theme} toggleTheme={toggleTheme} />
+            <Hero ref={parallaxRef} />
+            <Marquee />
+            <Stats />
+            <WhyMe />
+            <Work />
+            <Tooling />
+            <Timeline />
+            <Contact />
         </div>
     )
 }

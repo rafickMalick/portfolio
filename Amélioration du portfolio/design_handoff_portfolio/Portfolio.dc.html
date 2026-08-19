@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+</style>
+</helmet>
+
+<div style="font-family:'Manrope',sans-serif;background:{{ c.bg }};color:{{ c.text }};min-height:100vh;overflow-x:hidden;transition:background 0.3s,color 0.3s">
+
+  <nav style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:{{ c.navBg }};backdrop-filter:blur(12px);border-bottom:1px solid {{ c.border }}">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:500;color:{{ c.accentGreen }};letter-spacing:0.5px">rafick<span style="opacity:0.5">_/&gt;</span></div>
+    <div style="display:flex;gap:26px;align-items:center">
+      <a href="#profil" style="color:{{ c.textMuted }};text-decoration:none;font-size:14px">Profil</a>
+      <a href="#stack" style="color:{{ c.textMuted }};text-decoration:none;font-size:14px">Compétences</a>
+      <a href="#projets" style="color:{{ c.textMuted }};text-decoration:none;font-size:14px">Projets</a>
+      <a href="#parcours" style="color:{{ c.textMuted }};text-decoration:none;font-size:14px">Parcours</a>
+      <button onclick="{{ toggleTheme }}" aria-label="Changer de thème" style="width:38px;height:22px;border-radius:11px;border:1px solid {{ c.border }};background:{{ c.bgAlt }};cursor:pointer;position:relative;padding:0">
+        <span style="position:absolute;top:2px;left:{{ togglePos }};width:16px;height:16px;border-radius:50%;background:{{ c.accentGreen }};transition:left 0.2s"></span>
+      </button>
+      <a href="#contact" style="color:{{ c.btnPrimaryText }};text-decoration:none;font-size:13.5px;font-weight:700;background:{{ c.accentGreen }};padding:9px 18px;border-radius:6px;font-family:'IBM Plex Mono',monospace">Me recruter</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="padding:96px 48px 88px;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.25fr 0.75fr;gap:64px;align-items:center">
+    <div style="animation:fadeUp 0.7s ease both">
+      <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid {{ c.border }};background:{{ c.bgAlt }};padding:7px 14px;border-radius:100px;font-size:13px;color:{{ c.textMuted }};margin-bottom:24px">
+        <span style="width:7px;height:7px;border-radius:50%;background:{{ c.accentGreen }};animation:pulse 2s ease-in-out infinite"></span>
+        Disponible pour de nouveaux défis
+      </div>
+      <h1 style="font-weight:800;font-size:clamp(36px,5.2vw,62px);line-height:1.06;margin:0 0 22px;text-wrap:pretty;letter-spacing:-1px">
+        Rafick Malick.<br>Je fais parler les machines,<br>du firmware à l'écran.
+      </h1>
+      <p style="font-size:18px;line-height:1.65;color:{{ c.textMuted }};max-width:600px;margin:0 0 34px;text-wrap:pretty">
+        Étudiant ingénieur à Epitech Bénin, fullstack et roboticien. J'écris du C système, des moteurs 3D, des plateformes web et des robots pilotés à la voix — souvent dans le même mois. Ma vraie force : j'apprends seul, vite, et je livre.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#projets" style="background:{{ c.text }};color:{{ c.bg }};text-decoration:none;padding:14px 26px;border-radius:8px;font-weight:700;font-size:15px">Explorer mes projets</a>
+        <a href="#contact" style="border:1px solid {{ c.border }};color:{{ c.text }};text-decoration:none;padding:14px 26px;border-radius:8px;font-weight:700;font-size:15px">Me contacter</a>
+      </div>
+      <div style="display:flex;gap:38px;margin-top:44px;flex-wrap:wrap">
+        <div><div style="font-size:28px;font-weight:800">14+</div><div style="font-size:13px;color:{{ c.textDim }};font-family:'IBM Plex Mono',monospace">projets livrés</div></div>
+        <div><div style="font-size:28px;font-weight:800">3</div><div style="font-size:13px;color:{{ c.textDim }};font-family:'IBM Plex Mono',monospace">expériences pro</div></div>
+        <div><div style="font-size:28px;font-weight:800">2</div><div style="font-size:13px;color:{{ c.textDim }};font-family:'IBM Plex Mono',monospace">mondes : soft + hard</div></div>
+      </div>
+    </div>
+    <div style="position:relative;animation:fadeUp 0.7s 0.15s ease both">
+      <div style="border-radius:20px;overflow:hidden;border:1px solid {{ c.border }};background:{{ c.bgAlt }};aspect-ratio:4/5">
+        <img src="public/profile.jpeg" alt="Rafick Malick" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="position:absolute;bottom:-16px;left:-22px;background:{{ c.bgAlt }};border:1px solid {{ c.border }};padding:10px 16px;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.text }};box-shadow:0 8px 24px rgba(0,0,0,0.18)">Dev Fullstack</div>
+      <div style="position:absolute;top:24px;right:-26px;background:{{ c.bgAlt }};border:1px solid {{ c.border }};padding:10px 16px;border-radius:10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.text }};box-shadow:0 8px 24px rgba(0,0,0,0.18)">Roboticien</div>
+    </div>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profil" style="padding:80px 48px;max-width:1180px;margin:0 auto">
+    <div style="font-family:'IBM Plex Mono',monospace;color:{{ c.accentGreen }};font-size:13px;margin-bottom:10px">// qui suis-je</div>
+    <h2 style="font-weight:800;font-size:34px;margin:0 0 40px;max-width:660px;letter-spacing:-0.5px">Un profil hybride, rare sur le marché</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div data-reveal style="background:{{ c.bgAlt }};border:1px solid {{ c.border }};border-radius:14px;padding:28px;transition:transform 0.25s,box-shadow 0.25s" style-hover="transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,0.16)">
+        <div style="width:36px;height:36px;border-radius:9px;background:{{ c.accentGreen }};opacity:0.18;margin-bottom:18px"></div>
+        <h3 style="font-weight:700;font-size:18px;margin:0 0 10px">Polyvalence réelle</h3>
+        <p style="color:{{ c.textMuted }};font-size:14.5px;line-height:1.65;margin:0">Epitech Bénin pour la rigueur logicielle, la robotique pour le terrain. Web fluide ou hardware capricieux : je construis la solution complète, pas une moitié.</p>
+      </div>
+      <div data-reveal style="background:{{ c.bgAlt }};border:1px solid {{ c.border }};border-radius:14px;padding:28px;transition:transform 0.25s,box-shadow 0.25s" style-hover="transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,0.16)">
+        <div style="width:36px;height:36px;border-radius:9px;background:{{ c.accentAmber }};opacity:0.18;margin-bottom:18px"></div>
+        <h3 style="font-weight:700;font-size:18px;margin:0 0 10px">Apprentissage autonome</h3>
+        <p style="color:{{ c.textMuted }};font-size:14.5px;line-height:1.65;margin:0">Raytracer en C++, cryptographie PGP, Kubernetes : appris seul, puis livré. Donnez-moi une techno inconnue, je reviens avec quelque chose qui tourne.</p>
+      </div>
+      <div data-reveal style="background:{{ c.bgAlt }};border:1px solid {{ c.border }};border-radius:14px;padding:28px;transition:transform 0.25s,box-shadow 0.25s" style-hover="transform:translateY(-5px);box-shadow:0 14px 34px rgba(0,0,0,0.16)">
+        <div style="width:36px;height:36px;border-radius:9px;background:{{ c.accentBlue }};opacity:0.18;margin-bottom:18px"></div>
+        <h3 style="font-weight:700;font-size:18px;margin:0 0 10px">Déjà en responsabilité</h3>
+        <p style="color:{{ c.textMuted }};font-size:14.5px;line-height:1.65;margin:0">Stage dev web, formateur robotique, et chef de projet tech pour l'association Techbo Robotique : je sais tenir un délai et une équipe, pas seulement un clavier.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPÉTENCES -->
+  <section id="stack" style="padding:80px 48px;max-width:1180px;margin:0 auto">
+    <div style="font-family:'IBM Plex Mono',monospace;color:{{ c.accentGreen }};font-size:13px;margin-bottom:10px">// compétences</div>
+    <h2 style="font-weight:800;font-size:34px;margin:0 0 12px;letter-spacing:-0.5px">Ce que je maîtrise, en vrai</h2>
+    <p style="color:{{ c.textMuted }};font-size:16px;margin:0 0 40px;max-width:620px">Deux piles complètes, toutes deux éprouvées sur des projets livrés.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+      <div data-reveal style="border:1px solid {{ c.border }};border-radius:14px;padding:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.accentAmber }};margin-bottom:22px">IT &amp; LOGICIEL</div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ skillsIt }}" as="s" hint-placeholder-count="6">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:7px">
+                <span>{{ s.name }}</span><span style="color:{{ c.textDim }};font-family:'IBM Plex Mono',monospace;font-size:12.5px">{{ s.label }}</span>
+              </div>
+              <div style="height:5px;border-radius:3px;background:{{ c.barBg }}">
+                <div data-bar style="height:5px;border-radius:3px;background:{{ c.accentGreen }};width:{{ s.width }}"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div data-reveal style="border:1px solid {{ c.border }};border-radius:14px;padding:28px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.accentAmber }};margin-bottom:22px">ROBOTIQUE &amp; HARDWARE</div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ skillsRobot }}" as="s" hint-placeholder-count="6">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:14.5px;margin-bottom:7px">
+                <span>{{ s.name }}</span><span style="color:{{ c.textDim }};font-family:'IBM Plex Mono',monospace;font-size:12.5px">{{ s.label }}</span>
+              </div>
+              <div style="height:5px;border-radius:3px;background:{{ c.barBg }}">
+                <div data-bar style="height:5px;border-radius:3px;background:{{ c.accentBlue }};width:{{ s.width }}"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid {{ c.border }};border-radius:14px;padding:26px 28px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.accentAmber }};margin-bottom:18px">HORS CLAVIER</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <sc-for list="{{ passions }}" as="p" hint-placeholder-count="4">
+          <span style="border:1px solid {{ c.border }};background:{{ c.bgAlt }};padding:9px 16px;border-radius:100px;font-size:14px;color:{{ c.textMuted }}">{{ p }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section id="projets" style="padding:80px 48px;max-width:1180px;margin:0 auto">
+    <div style="font-family:'IBM Plex Mono',monospace;color:{{ c.accentGreen }};font-size:13px;margin-bottom:10px">// projets</div>
+    <div style="margin-bottom:36px">
+      <h2 style="font-weight:800;font-size:34px;margin:0 0 10px;letter-spacing:-0.5px">Les projets qui me résument</h2>
+      <p style="color:{{ c.textMuted }};font-size:16px;margin:0;max-width:620px">Des plateformes web qui tournent en production aux boîtiers que je conçois et programme moi-même.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <sc-for list="{{ visibleProjects }}" as="p" hint-placeholder-count="6">
+        <div data-reveal style="border:1px solid {{ c.border }};border-radius:14px;overflow:hidden;background:{{ c.bgAlt }};display:flex;flex-direction:column;transition:transform 0.25s,box-shadow 0.25s" style-hover="transform:translateY(-6px);box-shadow:0 16px 38px rgba(0,0,0,0.18)">
+          <div style="aspect-ratio:16/10;background:{{ c.stripeBg }};display:flex;align-items:center;justify-content:center;border-bottom:1px solid {{ c.border }}">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:{{ c.textDim }}">{{ p.media }}</span>
+          </div>
+          <div style="padding:22px;display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:{{ c.accentAmber }}">{{ p.cat }}</div>
+            <h3 style="font-weight:700;font-size:19px;margin:0">{{ p.title }}</h3>
+            <p style="color:{{ c.textMuted }};font-size:14px;line-height:1.6;margin:0;flex:1">{{ p.desc }}</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 9px;border-radius:5px;background:{{ c.bg }};color:{{ c.textMuted }};border:1px solid {{ c.border }}">{{ t }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="parcours" style="padding:80px 48px;max-width:1180px;margin:0 auto">
+    <div style="font-family:'IBM Plex Mono',monospace;color:{{ c.accentGreen }};font-size:13px;margin-bottom:10px">// parcours</div>
+    <h2 style="font-weight:800;font-size:34px;margin:0 0 40px;letter-spacing:-0.5px">De la théorie à la pratique</h2>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ timeline }}" as="e" hint-placeholder-count="6">
+        <div data-reveal style="display:grid;grid-template-columns:170px 24px 1fr;padding:22px 0;border-bottom:1px solid {{ c.border }};background:{{ e.rowBg }}">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:{{ c.textDim }}">{{ e.year }}</div>
+          <div style="display:flex;justify-content:center"><div style="width:10px;height:10px;border-radius:50%;background:{{ e.dot }};margin-top:5px"></div></div>
+          <div>
+            <div style="font-weight:700;font-size:17px;margin-bottom:6px;color:{{ e.titleColor }}">{{ e.title }}</div>
+            <div style="color:{{ c.textMuted }};font-size:14.5px;line-height:1.6">{{ e.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding:96px 48px 40px;max-width:1180px;margin:0 auto">
+    <div data-reveal style="border:1px solid {{ c.border }};background:{{ c.bgAlt }};border-radius:20px;padding:56px 48px;text-align:center">
+      <h2 style="font-weight:800;font-size:clamp(28px,4vw,44px);margin:0 0 18px;text-wrap:pretty;letter-spacing:-0.5px">Prochaine étape : votre entreprise.</h2>
+      <p style="color:{{ c.textMuted }};font-size:17px;max-width:560px;margin:0 auto 32px;line-height:1.6">Une offre, un stage, un projet à sortir du prototype ? Écrivez-moi — je réponds vite et je vous dis franchement si je suis le bon profil.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:32px">
+        <a href="mailto:malickrafick456@gmail.com" style="background:{{ c.accentGreen }};color:{{ c.btnPrimaryText }};text-decoration:none;padding:15px 28px;border-radius:8px;font-weight:700;font-size:15px">malickrafick456@gmail.com</a>
+        <a href="tel:+2290151588257" style="border:1px solid {{ c.border }};color:{{ c.text }};text-decoration:none;padding:15px 28px;border-radius:8px;font-weight:700;font-size:15px">+229 01 51 58 82 57</a>
+        <a href="https://github.com/rafickMalick" style="border:1px solid {{ c.border }};color:{{ c.text }};text-decoration:none;padding:15px 28px;border-radius:8px;font-weight:700;font-size:15px">GitHub</a>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:{{ c.textDim }}">Basé au Bénin · disponible en remote</div>
+    </div>
+  </section>
+
+  <footer style="padding:28px 48px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:{{ c.textDim }};max-width:1180px;margin:0 auto">
+    <span>rafick_/&gt; {{ year }}</span>
+    <span>Rafick Malick — Epitech Bénin</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    theme: (typeof localStorage !== 'undefined' && localStorage.getItem('rk-theme')) || 'dark'
+  };
+
+  componentDidMount() {
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          this._ioFired = true;
+          if (e.target.hasAttribute('data-bar')) {
+            e.target.style.width = e.target.getAttribute('data-w');
+          } else {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+          }
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    this._scan = () => {
+      document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((el, i) => {
+        el.setAttribute('data-revealed', '1');
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = 'opacity 0.6s cubic-bezier(.2,.7,.3,1) ' + ((i % 6) * 60) + 'ms, transform 0.6s cubic-bezier(.2,.7,.3,1) ' + ((i % 6) * 60) + 'ms';
+        this._io.observe(el);
+      });
+      document.querySelectorAll('[data-bar]:not([data-revealed])').forEach((el, i) => {
+        el.setAttribute('data-revealed', '1');
+        el.setAttribute('data-w', el.style.width || '0%');
+        el.style.width = '0%';
+        el.style.transition = 'width 1s cubic-bezier(.2,.7,.3,1) ' + (i * 70) + 'ms';
+        this._io.observe(el);
+      });
+    };
+    this._revealAll = () => {
+      document.querySelectorAll('[data-reveal][data-revealed]').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.querySelectorAll('[data-bar][data-revealed]').forEach(el => {
+        el.style.width = el.getAttribute('data-w') || '0%';
+      });
+    };
+    this._scan();
+    this._t = setInterval(this._scan, 500);
+    this._fallback = setInterval(() => {
+      const vh = window.innerHeight || 800;
+      document.querySelectorAll('[data-reveal][data-revealed],[data-bar][data-revealed]').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.95 && r.bottom > 0) {
+          if (el.hasAttribute('data-bar')) el.style.width = el.getAttribute('data-w') || '0%';
+          else { el.style.opacity = '1'; el.style.transform = 'none'; }
+        }
+      });
+    }, 300);
+    this._safety = setTimeout(() => { if (!this._ioFired) this._revealAll(); }, 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this._t);
+    clearInterval(this._fallback);
+    clearTimeout(this._safety);
+    if (this._io) this._io.disconnect();
+  }
+
+  toggleTheme = () => this.setState(s => {
+    const next = s.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('rk-theme', next); } catch (e) {}
+    return { theme: next };
+  });
+
+  renderVals() {
+    const dark = {
+      bg: 'oklch(14% 0.012 250)', bgAlt: 'oklch(18% 0.014 250)', navBg: 'oklch(14% 0.012 250 / 0.85)',
+      text: 'oklch(92% 0.006 250)', textMuted: 'oklch(72% 0.01 250)', textDim: 'oklch(55% 0.01 250)',
+      border: 'oklch(28% 0.01 250)', barBg: 'oklch(24% 0.012 250)',
+      accentGreen: 'oklch(78% 0.19 152)', accentAmber: 'oklch(78% 0.19 70)', accentBlue: 'oklch(78% 0.19 220)',
+      btnPrimaryText: 'oklch(14% 0.012 250)', highlightBg: 'oklch(78% 0.19 152 / 0.07)',
+      stripeBg: 'repeating-linear-gradient(135deg, oklch(24% 0.014 250) 0px, oklch(24% 0.014 250) 14px, oklch(20% 0.012 250) 14px, oklch(20% 0.012 250) 28px)'
+    };
+    const light = {
+      bg: 'oklch(98% 0.004 250)', bgAlt: 'oklch(95% 0.006 250)', navBg: 'oklch(98% 0.004 250 / 0.85)',
+      text: 'oklch(20% 0.01 250)', textMuted: 'oklch(42% 0.01 250)', textDim: 'oklch(55% 0.01 250)',
+      border: 'oklch(87% 0.006 250)', barBg: 'oklch(90% 0.006 250)',
+      accentGreen: 'oklch(46% 0.14 152)', accentAmber: 'oklch(48% 0.15 70)', accentBlue: 'oklch(48% 0.15 220)',
+      btnPrimaryText: 'oklch(98% 0.004 250)', highlightBg: 'oklch(46% 0.14 152 / 0.07)',
+      stripeBg: 'repeating-linear-gradient(135deg, oklch(91% 0.006 250) 0px, oklch(91% 0.006 250) 14px, oklch(95% 0.005 250) 14px, oklch(95% 0.005 250) 28px)'
+    };
+    const c = this.state.theme === 'dark' ? dark : light;
+
+    const skillsIt = [
+      { name: 'C / C++ (système & raytracing)', level: 95 },
+      { name: 'React / Next.js', level: 90 },
+      { name: 'Node.js / Express', level: 85 },
+      { name: 'Python (IA & algorithmes)', level: 85 },
+      { name: 'PHP / PostgreSQL', level: 80 },
+      { name: 'Docker / CI-CD (DevOps)', level: 80 }
+    ].map(s => ({ ...s, width: s.level + '%', label: s.level + '%' }));
+
+    const skillsRobot = [
+      { name: 'C++ / ROS', level: 90 },
+      { name: 'Arduino / IoT', level: 95 },
+      { name: 'OpenCV / vision par ordinateur', level: 85 },
+      { name: 'Python / machine learning', level: 80 },
+      { name: 'Électronique / hardware', level: 85 },
+      { name: 'CAO / impression 3D', level: 80 }
+    ].map(s => ({ ...s, width: s.level + '%', label: s.level + '%' }));
+
+    const passions = ['Voyage & sport', 'Robotique', 'Film & animé', 'Apprentissage autonome'];
+
+    const visibleProjects = [
+      { cat: 'PLATEFORME / SANTÉ', title: 'Sang +', desc: "Plateforme de mise en relation entre donneurs de sang et structures de santé : inscription des donneurs, appels aux dons ciblés et suivi des demandes urgentes.", tags: ['React', 'Node.js', 'Base de données'], media: 'capture Sang +' },
+      { cat: 'AUTOMATISATION / GOV', title: 'Visa & Haj Bénin', desc: "Automatisation de la soumission et de la gestion des demandes de visa, avec suivi étape par étape du parcours des pèlerins pour le Haj au Bénin.", tags: ['Automatisation', 'Node.js', 'Workflow', 'Dashboard'], media: 'capture du suivi' },
+      { cat: 'E-COMMERCE', title: 'Boutique en ligne', desc: "Site e-commerce complet : catalogue, panier, tunnel de commande et back-office de gestion des produits et des commandes.", tags: ['React', 'Node.js', 'Paiement', 'PostgreSQL'], media: 'capture boutique' },
+      { cat: 'FULLSTACK', title: 'AREA (Action/REAction)', desc: "Plateforme d'automatisation type Zapier : interconnexion dynamique de services web via leurs API, avec authentification OAuth.", tags: ['React', 'Node.js', 'OAuth', 'Docker'], media: 'capture AREA' },
+      { cat: 'IOT / AGRITECH', title: 'Smart Irrigation', desc: "Boîtier de contrôle d'arrosage autonome : capteurs d'humidité et de météo, déclenchement automatique des vannes, et application mobile pour piloter et suivre chaque zone à distance.", tags: ['ESP32', 'Capteurs', 'App mobile', 'IoT'], media: 'photo du boîtier' },
+      { cat: 'ROBOTIQUE', title: 'Bras robot (Hug In Face)', desc: 'Conception mécanique et programmation d\'un bras robotisé interactif : cinématique, contrôle des servos et interface de commande.', tags: ['Robotique', 'Cinématique', 'Hardware'], media: 'photo du bras' },
+      { cat: 'ROBOTIQUE', title: 'Main robotisée', desc: 'Main robotique qui reproduit les gestes humains analysés en temps réel par vision par ordinateur.', tags: ['OpenCV', 'Computer vision', 'IA'], media: 'photo de la main' },
+      { cat: 'ÉNERGIE / EMBARQUÉ', title: 'Sauvegarde énergétique', desc: 'Boîtier de contrôle des circuits énergétiques : un jeu de capteurs surveille la consommation et bascule automatiquement les circuits pour préserver l\'énergie disponible.', tags: ['Firmware', 'Capteurs', 'Électronique', 'Automatisation'], media: 'photo du boîtier' }
+    ];
+
+    const timeline = [
+      { year: '2023', title: 'Baccalauréat scientifique (Bac C)', desc: 'Obtention du BAC C au Bénin.' },
+      { year: '2023 — 2028', title: 'Epitech Bénin', desc: "Cursus d'expertise en ingénierie informatique, en cours." },
+      { year: '2024 · 4 mois', title: 'Développeur web — MarketOptionCenter', desc: 'Stage de première année : développement web en conditions réelles.' },
+      { year: '2025 · 2 mois', title: 'Formateur robotique — Digital Valeey', desc: 'Animation d\'ateliers et formation en robotique auprès de débutants.' },
+      { year: 'Depuis nov. 2025', title: 'Chef de projet tech — Techbo Robotique', desc: "Gestion d'équipe et pilotage de projets innovants au sein de l'association." },
+      { year: 'Demain', title: 'Votre entreprise', desc: "Prêt à apporter mon énergie et ma capacité d'apprentissage à vos équipes.", highlight: true }
+    ].map(e => ({
+      ...e,
+      dot: e.highlight ? c.accentAmber : c.accentGreen,
+      titleColor: e.highlight ? c.accentAmber : c.text,
+      rowBg: e.highlight ? c.highlightBg : 'transparent'
+    }));
+
+    return { c, skillsIt, skillsRobot, passions, visibleProjects, timeline,
+      year: new Date().getFullYear(), toggleTheme: this.toggleTheme,
+      togglePos: this.state.theme === 'dark' ? '2px' : '18px' };
+  }
+}
+</script>
+</body>
+</html>
