@@ -25,6 +25,10 @@ export default function useCountUp(to, suffix = '') {
                 setValue(to)
                 return
             }
+            if (typeof requestAnimationFrame === 'undefined') {
+                setValue(to)
+                return
+            }
             const dur = 1300
             const t0 = performance.now()
             const tick = (t) => {
@@ -34,6 +38,11 @@ export default function useCountUp(to, suffix = '') {
                 if (k < 1) requestAnimationFrame(tick)
             }
             requestAnimationFrame(tick)
+        }
+
+        if (typeof IntersectionObserver === 'undefined') {
+            run()
+            return
         }
 
         const io = new IntersectionObserver(

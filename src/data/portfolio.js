@@ -29,6 +29,7 @@ const rawProjects = [
         title: 'Sang +',
         desc: 'Mise en relation entre donneurs de sang et structures de santé : inscription des donneurs, appels aux dons ciblés et suivi des demandes urgentes.',
         tags: ['React', 'Node.js', 'PostgreSQL'],
+        link: 'https://sang-plus-zeta.vercel.app/',
     },
     {
         cat: 'Automatisation · Administration',
@@ -41,6 +42,7 @@ const rawProjects = [
         title: 'Boutique en ligne',
         desc: 'Catalogue, panier, tunnel de commande et back-office complet de gestion des produits et des commandes.',
         tags: ['React', 'Paiement', 'PostgreSQL'],
+        link: 'https://dmoc-1.onrender.com/dmoc/home',
     },
     {
         cat: 'Fullstack · API',
@@ -71,6 +73,7 @@ const rawProjects = [
         title: 'Sauvegarde énergétique',
         desc: "Boîtier de contrôle des circuits énergétiques : un jeu de capteurs surveille la consommation et bascule les circuits pour préserver l'énergie disponible.",
         tags: ['Firmware', 'Capteurs', 'Électronique'],
+        link: 'https://powerlense-v1-sigma.vercel.app/',
     },
 ]
 

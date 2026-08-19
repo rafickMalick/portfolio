@@ -19,7 +19,7 @@ export default function useReveal(kind = 'reveal', index = 0) {
     useEffect(() => {
         const el = ref.current
         if (!el) return
-        if (prefersReducedMotion()) {
+        if (prefersReducedMotion() || typeof IntersectionObserver === 'undefined') {
             setShown(true)
             return
         }

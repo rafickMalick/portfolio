@@ -21,7 +21,15 @@ export default function Work() {
                     <Reveal index={i} as="div" className="work-row" key={p.num}>
                         <div className="row-head">
                             <div className="row-num">{p.num}</div>
-                            <h3 className="row-title">{p.title}</h3>
+                            <h3 className="row-title">
+                                {p.link ? (
+                                    <a href={p.link} target="_blank" rel="noreferrer" className="row-title-link">
+                                        {p.title}
+                                    </a>
+                                ) : (
+                                    p.title
+                                )}
+                            </h3>
                             <div className="row-cat">{p.cat}</div>
                         </div>
                         <div className="row-body">
