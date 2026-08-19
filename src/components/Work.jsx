@@ -18,7 +18,7 @@ export default function Work() {
             </div>
             <div className="work-list">
                 {projects.map((p, i) => (
-                    <Reveal index={i} as="div" className="work-row" key={p.num}>
+                    <Reveal index={i} as="article" className="work-row" key={p.num} aria-label={p.title}>
                         <div className="row-head">
                             <div className="row-num">{p.num}</div>
                             <h3 className="row-title">
