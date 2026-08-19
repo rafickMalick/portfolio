@@ -30,5 +30,9 @@
     "@vitejs/plugin-react": "^5.1.4",
     "puppeteer": "^24.43.1",
     "vite": "^7.3.1"
+  },
+  "allowScripts": {
+    "esbuild@0.27.3": true,
+    "puppeteer@24.43.1": true
   }
 }
