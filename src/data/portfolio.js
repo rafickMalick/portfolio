@@ -99,7 +99,7 @@ export const skillGroups = [
             ['Node.js / Express', 'solide'],
             ['Python', 'à l’aise'],
             ['PostgreSQL / SQL', 'à l’aise'],
-            ['PHP', 'à l’aise'],
+            ['PHP', 'solide'],
             ['Docker / CI-CD', 'à l’aise'],
         ]),
     },
@@ -147,6 +147,7 @@ const rawTimeline = [
     { year: '2024 · 4 mois', title: 'Développeur web — MarketOptionCenter', desc: 'Stage de première année : développement web en conditions réelles.' },
     { year: '2025 · 2 mois', title: 'Formateur robotique — Digital Valeey', desc: "Animation d'ateliers et formation en robotique auprès de débutants." },
     { year: 'Depuis nov. 2025', title: 'Chef de projet tech — Techbo Robotique', desc: "Gestion d'équipe et pilotage de projets innovants au sein de l'association." },
+    { year: '2026 · 4 mois', title: 'Développeur web — MarketOptionCenter', desc: 'Stage de troisième année : développement web en conditions réelles.' },
     { year: 'Prochainement', title: 'Votre entreprise', desc: "Prêt à apporter mon énergie et ma capacité d'apprentissage à vos équipes.", highlight: true },
 ]
 
